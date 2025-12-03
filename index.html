@@ -53,7 +53,7 @@
     if (id) {
         // GitHub Pages 上の PNG パスを組み立て
         const base = location.origin + location.pathname.replace(/\/[^\/]*$/, "");
-        const iconPath = `${base}/${id}/icon.png`;
+        const iconPath = `${base}/icons/${id}/icon.png`;
 
         // icon を差し替え
         document.getElementById("appleIcon").href = iconPath;
