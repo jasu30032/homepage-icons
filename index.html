@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ホーム画面に追加</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #f8f8f8;
+    }
+
+    #icon {
+      width: 180px;
+      height: 180px;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+
+    .msg {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <img id="icon" src="" alt="icon">
+
+  <div class="msg">
+    下の共有ボタンから<br>
+    <strong>「ホーム画面に追加」</strong> を選んでください。
+  </div>
+
+  <script>
+    // ?icon=xxxx.png を読む
+    const params = new URLSearchParams(location.search);
+    const icon = params.get("icon");
+
+    if (icon) {
+      document.getElementById("icon").src = "./icons/" + icon;
+    } else {
+      document.getElementById("icon").style.display = "none";
+      document.querySelector('.msg').innerHTML =
+        "アイコンが指定されていません。";
+    }
+  </script>
+</body>
+</html>
