@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>メモ</title>
+
+  <!-- iOS Webアプリ化 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ホーム画面アイコン -->
+  <!-- 
+  <link rel="apple-touch-icon" href="icon.png">
+   -->
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, sans-serif;
+      background: #fafafa;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .content {
+      white-space: pre-wrap;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="title"></h1>
+  <div class="content" id="body"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("title").textContent = params.get("title");
+    document.getElementById("body").textContent = params.get("body");
+  </script>
+</body>
+</html>
