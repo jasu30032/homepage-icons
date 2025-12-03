@@ -1,56 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>ホーム画面に追加</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>ホームアイコン</title>
 
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      text-align: center;
-      padding: 20px;
-      background: #f8f8f8;
-    }
+    <!-- iOS Web App 用 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    #icon {
-      width: 180px;
-      height: 180px;
-      border-radius: 30px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      margin-top: 40px;
-      margin-bottom: 30px;
-    }
+    <!-- icon.png を動的に差し替える予定 -->
+    <link id="appleIcon" rel="apple-touch-icon" href="">
 
-    .msg {
-      font-size: 18px;
-      font-weight: 600;
-      color: #333;
-      line-height: 1.6;
-    }
-  </style>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 90%;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 25px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background: #007aff;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
 </head>
+
 <body>
+<div class="container">
+    <h2>ホーム画面に追加できます</h2>
+    <p>下の共有メニューから「ホーム画面に追加」を押してください。</p>
 
-  <img id="icon" src="" alt="icon">
+    <a class="btn" href="javascript:void(0)">ホーム画面に追加の案内</a>
+</div>
 
-  <div class="msg">
-    下の共有ボタンから<br>
-    <strong>「ホーム画面に追加」</strong> を選んでください。
-  </div>
+<script>
+    // URLの ?id=UUID を取得
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
 
-  <script>
-    // ?icon=xxxx.png を読む
-    const params = new URLSearchParams(location.search);
-    const icon = params.get("icon");
+    if (id) {
+        // GitHub Pages 上の PNG パスを組み立て
+        const base = location.origin + location.pathname.replace(/\/[^\/]*$/, "");
+        const iconPath = `${base}/${id}/icon.png`;
 
-    if (icon) {
-      document.getElementById("icon").src = "./icons/" + icon;
+        // icon を差し替え
+        document.getElementById("appleIcon").href = iconPath;
     } else {
-      document.getElementById("icon").style.display = "none";
-      document.querySelector('.msg').innerHTML =
-        "アイコンが指定されていません。";
+        alert("ID がありません。アプリから開いてください。");
     }
-  </script>
+</script>
+
 </body>
 </html>
